@@ -1,9 +1,14 @@
 service: sls-vpc
-provider: aws
+provider:
+  name: aws
+  stage: ${opt:stage, 'dev'}
+  runtime: nodejs8.10
 
 functions:
   hello:
     handler: handler.hello
+    role:
+      ${env:LAMBDA_ROLE_ARN}
     events:
       - http: GET hello
     vpc:
