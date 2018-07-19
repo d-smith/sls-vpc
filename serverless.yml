@@ -1,0 +1,14 @@
+service: sls-vpc
+provider: aws
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http: GET hello
+    vpc:
+      securityGroupIds:
+        - sg-48872a02
+      subnetIds:
+        - subnet-4dee592a
+        - subnet-e7f802d9
